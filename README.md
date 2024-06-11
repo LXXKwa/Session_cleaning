@@ -2,11 +2,11 @@
 
 ------------------------------------------- README -------------------------------------------
 
-· The data cleaning framework for session milk yield records on conventional milking systems --------
+* The data cleaning framework for session milk yield records on conventional milking systems --------
 
-· Citation: Multi-strategy optimization of data cleaning for large-scale session milk yield records on conventional milking systems (In the process of submission)
+* Citation: Multi-strategy optimization of data cleaning for large-scale session milk yield records on conventional milking systems (In the process of submission)
 
-· Install and load packages
+* Install and load packages
 1. quantreg: Koenker R (2023). quantreg: Quantile Regression. R package version 5.97
 
 2. isotree: Cortes D (2023). isotree: Isolation-Based Outlier Detection. R package version 0.5.24-3
@@ -17,7 +17,7 @@
 
 5. reshape2: Hadley Wickham (2007). Reshaping Data with the reshape Package. Journal of Statistical Software, 21(12), 1-20.
 
--------- Anomaly detection
+* Anomaly detection
 1. Data preparation:
     Input variable: Cow ID; parity; Days in milk (DIM); Milk in morning session (kg); Milk in afternoon session (kg); Milk in evening session (kg)
     Colnames: ID/Parity/DIM/milk1/milk2/milk3
@@ -42,8 +42,7 @@
 
 9. Save your raw data in a safe space or have another copy!!!
 
-
--------- Imputation of missing data
+* Imputation of missing data
 1. Data preparation:
     Input variable: Cow ID; parity; Days in milk (DIM); Milk in morning session (kg); Milk in afternoon session (kg); Milk in evening session (kg)
     Colnames: ID/Parity/DIM/milk1/milk2/milk3
