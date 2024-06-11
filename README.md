@@ -7,9 +7,9 @@
 * Citation: Multi-strategy optimization of data cleaning for large-scale session milk yield records on conventional milking systems (In the process of submission)
 
 * Install and load packages
-    1. quantreg: Koenker R (2023). quantreg: Quantile Regression. R package version 5.97
+    1) quantreg: Koenker R (2023). quantreg: Quantile Regression. R package version 5.97
     
-    2. isotree: Cortes D (2023). isotree: Isolation-Based Outlier Detection. R package version 0.5.24-3
+    2) isotree: Cortes D (2023). isotree: Isolation-Based Outlier Detection. R package version 0.5.24-3
     
     3. dplyr: Wickham H, Fran?ois R, Henry L, Müller K, Vaughan D (2023). dplyr: A Grammar of Data Manipulation. R package version 1.1.4
     
