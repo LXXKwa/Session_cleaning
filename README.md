@@ -2,7 +2,7 @@
 
 ------------------------------------------- README -------------------------------------------
 
-* The data cleaning framework for session milk yield records on conventional milking systems --------
+* The data cleaning framework for session milk yield records on conventional milking systems
 
 * Citation: Multi-strategy optimization of data cleaning for large-scale session milk yield records on conventional milking systems (In the process of submission)
 
