@@ -17,7 +17,7 @@
     
 5. reshape2: Hadley Wickham (2007). Reshaping Data with the reshape Package. Journal of Statistical Software, 21(12), 1-20.
 
-*`Anomaly detection`
+*Anomaly detection
 1. Data preparation:
         Input variable: Cow ID; parity; Days in milk (DIM); Milk in morning session (kg); Milk in afternoon session (kg); Milk in evening session (kg)
         Colnames: ID/Parity/DIM/milk1/milk2/milk3
@@ -42,7 +42,7 @@
     
 9. Save your raw data in a safe space or have another copy!!!
 
-*`Imputation of missing data`
+*Imputation of missing data
 1. Data preparation:
         Input variable: Cow ID; parity; Days in milk (DIM); Milk in morning session (kg); Milk in afternoon session (kg); Milk in evening session (kg)
         Colnames: ID/Parity/DIM/milk1/milk2/milk3
