@@ -10,7 +10,7 @@
 ##### If necessary, key parameters can be modified from the code to adapt to the population to be analyzed
 ##### Save your raw data in a safe space or have another copy!!!
 
-##### Citation: Towards standardization and completeness of milk yield recording on conventional milking systems through multi-strategy optimization (In the process of submission)
+##### Citation: Towards standardization and completeness of milk yield recording from conventional milking systems through multi-strategy optimization (In the process of submission)
 # -----------------------------------------------------------------------------------------------------------------------------------
 
 missing_imputation<-function(data,session=3,method=3,windown=10,refn=1000,num_used=20){
