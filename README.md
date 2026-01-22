@@ -1,10 +1,10 @@
 ------------------------------------------- README -------------------------------------------
 
->>>>>>>> The data cleaning framework for session milk yield or daily milk yield records on conventional milking systems <<<<<<<<<<<<
+· The data cleaning framework for session milk yield or daily milk yield records on conventional milking systems
 
->>>>>>>> Citation: Improving accuracy and completeness of high-throughput milk yield records of dairy cattle in conventional milking systems through a multi-strategy framework (In review)
+· Citation: Improving accuracy and completeness of high-throughput milk yield records of dairy cattle in conventional milking systems through a multi-strategy framework (In review)
 
->>>>>>>> Install and load packages
+· Install and load packages
 1. quantreg: Koenker R (2023). quantreg: Quantile Regression. R package version 5.97
 
 2. isotree: Cortes D (2023). isotree: Isolation-Based Outlier Detection. R package version 0.5.24-3
@@ -15,7 +15,7 @@
 
 5. reshape2: Hadley Wickham (2007). Reshaping Data with the reshape Package. Journal of Statistical Software, 21(12), 1-20.
 
->>>>>>>> Anomaly detection
+· Anomaly detection
 1. Data preparation:
     
     For session milk yield records from a three-times milking system:
@@ -52,7 +52,7 @@
 8. Save your raw data in a safe space or have another copy!!!
 
 
->>>>>>>> Imputation of missing data
+· Imputation of missing data
 1. Data preparation:
 
     For session milk yield records from a three-times milking system:
