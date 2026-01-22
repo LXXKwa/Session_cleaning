@@ -10,7 +10,7 @@
 ##### If necessary, key parameters can be modified from the code to adapt to the population to be analyzed
 ##### Save your raw data in a safe space or have another copy!!!
 
-##### Citation: Towards standardization and completeness of milk yield recording from conventional milking systems through multi-strategy optimization (In the process of submission)
+##### Citation: Improving accuracy and completeness of high-throughput milk yield records of dairy cattle in conventional milking systems through a multi-strategy framework (In review)
 # -----------------------------------------------------------------------------------------------------------------------------------
 
 anomaly_detection<-function(data,session=3,IQRn=1.5,iforestn=0.65,taun=0.5,URn=0.75,LRn=0.25){
@@ -25,6 +25,7 @@ anomaly_detection<-function(data,session=3,IQRn=1.5,iforestn=0.65,taun=0.5,URn=0
   result<-data.frame()
   
   if(session==1){
+    data<-subset(data,!is.na(data$milk))
     pb <- txtProgressBar(style=3)
     for(i in 1:length(ucode)){
       dt<-subset(data,data$code==ucode[i])
@@ -53,7 +54,49 @@ anomaly_detection<-function(data,session=3,IQRn=1.5,iforestn=0.65,taun=0.5,URn=0
     data<-subset(result,!is.na(result$milk))
   }
   
+  if(session==2){
+    data<-subset(data,!(is.na(data$milk1)&is.na(data$milk2)))
+    pb <- txtProgressBar(style=3)
+    for(i in 1:length(ucode)){
+      dt<-subset(data,data$code==ucode[i])
+      dt<-dt[order(dt$DIM),]
+      dt$iqrmilk1<-ifelse(is.na(dt$milk1),apply(dt[,c(4:5)],1,function(x) max(x,na.rm=T)),dt$milk1)
+      dt$iqrmilk2<-ifelse(is.na(dt$milk2),apply(dt[,c(4:5)],1,function(x) max(x,na.rm=T)),dt$milk2)
+      dt$iqrmilk<-apply(dt[,c(7:8)],1,sum)
+      y<-dt$iqrmilk
+      tt<-dt$DIM
+      model_quantile<-nlrq(y~funwood(a,b,c,t=tt),tau=taun,start=list(a=10,b=0.2,c=0.002)) 
+      deviation_y<-y-predict(model_quantile)
+      anomaly_daily<-as.data.frame(cbind(tt,deviation_y))
+      anomaly_daily<-subset(anomaly_daily,anomaly_daily$deviation_y>=(quantile(deviation_y,URn)+IQRn*(quantile(deviation_y,URn)-quantile(deviation_y,LRn))))
+      
+      anomaly_morning<-dt[,c(3,7)]
+      az<-as.matrix(anomaly_morning)
+      iso<-isolation.forest(az,ntrees = 100)
+      pred<-predict(iso,az)
+      anomaly_morning<-cbind(anomaly_morning,pred)
+      dt<-left_join(dt,anomaly_morning[,c(1,3)],by='DIM')
+      
+      anomaly_afternoon<-dt[,c(3,8)]
+      az<-as.matrix(anomaly_afternoon)
+      iso<-isolation.forest(az,ntrees = 100)
+      pred<-predict(iso,az)
+      anomaly_afternoon<-cbind(anomaly_afternoon,pred)
+      dt<-left_join(dt,anomaly_afternoon[,c(1,3)],by='DIM')
+      
+      colnames(dt)[c(10:11)]<-c('pred1','pred2')
+      dt[which(dt$DIM%in%anomaly_daily$tt&dt$pred1>iforestn&dt$iqrmilk1>median(dt$iqrmilk1)),4]<-NA
+      dt[which(dt$DIM%in%anomaly_daily$tt&dt$pred2>iforestn&dt$iqrmilk2>median(dt$iqrmilk2)),5]<-NA
+      dt<-dt[,c(1:5)]
+      
+      result<-rbind(result,dt)
+      setTxtProgressBar(pb, i/length(ucode))
+    }
+    data<-subset(result,!(is.na(result$milk1)&is.na(result$milk2)))
+  }
+  
   if(session==3){
+    data<-subset(data,!(is.na(data$milk1)&is.na(data$milk2)&is.na(data$milk3)))
     pb <- txtProgressBar(style=3)
     for(i in 1:length(ucode)){
       dt<-subset(data,data$code==ucode[i])
